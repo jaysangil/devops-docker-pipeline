@@ -19,3 +19,4 @@ jobs:
           JENKINS_URL: ${{ secrets.JENKINS_URL }}
           JENKINS_USER: ${{ secrets.JENKINS_USER }}
           JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
+          JENKINS_TRIGGER_TOKEN: ${{secrets.JENKINS_TRIGGER_TOKEN}}
