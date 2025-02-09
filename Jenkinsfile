@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "devops-docker-pipeline"
+	JENKINS_CRED_ID = credentials('JENKINS_CRED_ID')
     }
 
     stages {
@@ -13,7 +14,7 @@ pipeline {
                         branches: [[name: '*/main']],
                         userRemoteConfigs: [[
                             url: 'https://github.com/jaysangil/devops-docker-pipeline.git',
-                            credentialsId: '3295a189-85c9-4080-bfe7-e042c33e79a4'
+                            credentialsId: JENKINS_CRED_ID
                         ]]
                     ])
                 }
