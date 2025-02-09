@@ -8,25 +8,39 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-               git branch: 'main', url: 'https://github.com/jaysangil/devops-docker-pipeline.git'
+                script {
+                    checkout([$class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/jaysangil/devops-docker-pipeline.git',
+                            credentialsId: '3295a189-85c9-4080-bfe7-e042c33e79a4'
+                        ]]
+                    ])
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
+                script {
+                    sh 'docker build -t $DOCKER_IMAGE .'
+                }
             }
         }
 
         stage('Run Container') {
             steps {
-                sh 'docker run -p 3000:3000 -d $DOCKER_IMAGE'
+                script {
+                    sh 'docker run -p 3000:3000 -d $DOCKER_IMAGE'
+                }
             }
         }
 
         stage('Test Application') {
             steps {
-                sh 'curl http://localhost:3000'
+                script {
+                    sh 'curl http://localhost:3000'
+                }
             }
         }
 
@@ -34,6 +48,15 @@ pipeline {
             steps {
                 echo '🚀 Deployment Successful!'
             }
+        }
+    }
+
+    post {
+        failure {
+            echo '❌ Build failed! Check logs for details.'
+        }
+        success {
+            echo '✅ Build completed successfully!'
         }
     }
 }
