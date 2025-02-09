@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/jaysangil/devops-docker-pipeline.git'
+               git branch: 'main', url: 'https://github.com/jaysangil/devops-docker-pipeline.git'
             }
         }
 
