@@ -1,0 +1,32 @@
+# Node.js
+node_modules/ 
+npm-debug.log
+package-lock.json
+
+# Docker
+docker-compose.override.yml
+docker-compose.dev.yml
+.docker/
+docker-cache/
+
+# Jenkins
+jenkins_home/
+jenkins.log
+workspace/
+builds/
+jobs/
+secrets/
+.tmp/
+
+# Github Actions
+.github/workflows/*.log
+.github/workflows/*.bak
+.github/workflows/*.tmp
+
+# General OS/IDE file
+.DS_Store
+*.swp
+*.swo
+*.bak
+*.log
+*.tmp
